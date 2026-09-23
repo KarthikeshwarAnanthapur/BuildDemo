@@ -2,21 +2,21 @@
 
 @layer base {
   :root {
-    --bg-obsidian: #08090C;
-    --bg-granite: #12151B;
-    --bg-surface: #181C24;
-    --accent-gold: #C5A059;
-    --accent-gold-light: #E6C875;
-    --text-primary: #F8FAFC;
-    --text-secondary: #94A3B8;
+    --bg-obsidian: #FAF9F6;
+    --bg-granite: #FFFFFF;
+    --bg-surface: #F1F5F9;
+    --accent-gold: #B38B38;
+    --accent-gold-light: #D4A747;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
     --text-muted: #64748B;
-    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass: rgba(0, 0, 0, 0.08);
   }
 
   html {
     scroll-behavior: smooth;
-    background-color: #08090C;
-    color: #F8FAFC;
+    background-color: #FAF9F6;
+    color: #0F172A;
     font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
   }
@@ -24,8 +24,8 @@
   body {
     margin: 0;
     padding: 0;
-    background-color: #08090C;
-    color: #F8FAFC;
+    background-color: #FAF9F6;
+    color: #0F172A;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -47,49 +47,50 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #08090C;
+  background: #FAF9F6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1E2430;
+  background: #CBD5E1;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #C5A059;
+  background: #B38B38;
 }
 
-/* Glassmorphism Classes */
+/* Glassmorphism Classes (Light Theme) */
 .glass-panel {
-  background: rgba(18, 21, 27, 0.65);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(197, 160, 89, 0.3);
-  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 30px -10px rgba(197, 160, 89, 0.15);
+  background: #FFFFFF;
+  border-color: rgba(179, 139, 56, 0.4);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1), 0 0 30px -10px rgba(179, 139, 56, 0.2);
 }
 
 .gold-gradient-text {
-  background: linear-gradient(135deg, #FFF6D6 0%, #C5A059 50%, #8E6D29 100%);
+  background: linear-gradient(135deg, #0F172A 0%, #B38B38 60%, #866119 100%);
   -webkit-background-clip: text;
-  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gold-border-glow {
-  box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
+  box-shadow: 0 0 25px rgba(179, 139, 56, 0.25);
 }
 
 /* Architectural Image Mask Animations */
@@ -98,7 +99,7 @@
   transition: clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hide native cursor when custom cursor active on desktop */
+/* Custom Cursor styling for Light Theme */
 @media (min-width: 1024px) {
   body.has-custom-cursor {
     cursor: none;
@@ -111,14 +112,4 @@
   body.has-custom-cursor [role="button"] {
     cursor: none;
   }
-}
-
-/* Keyframe Pulsing Glow */
-@keyframes subtlePulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50% { opacity: 0.6; transform: scale(1.05); }
-}
-
-.animate-pulse-subtle {
-  animation: subtlePulse 6s infinite ease-in-out;
 }

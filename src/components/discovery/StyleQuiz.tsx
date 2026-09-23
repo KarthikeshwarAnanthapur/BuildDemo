@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { StylePreference } from '../../types';
-import { Sparkles, Check, ArrowRight, RefreshCw } from 'lucide-react';
+import { Sparkles, Check } from 'lucide-react';
 import { MagneticButton } from '../UI/MagneticButton';
 
 interface StyleQuizProps {
@@ -11,7 +11,7 @@ interface StyleQuizProps {
 export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
   const [selectedStyle, setSelectedStyle] = useState<StylePreference['style']>('Warm');
   const [selectedPriority, setSelectedPriority] = useState<StylePreference['priority']>('Durability');
-  const [selectedSpace, setSelectedSpace] = useState('Living & Bedrooms');
+  const [selectedSpace] = useState('Living & Bedrooms');
 
   const styles: { name: StylePreference['style']; desc: string; img: string }[] = [
     { name: 'Warm', desc: 'Natural European Oak, soft honey tones & tactile warmth.', img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=800&auto=format&fit=crop' },
@@ -39,27 +39,27 @@ export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
   };
 
   return (
-    <section id="style-quiz" className="relative w-full bg-[#08090C] py-28">
+    <section id="style-quiz" className="relative w-full bg-[#FAF9F6] py-28 border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-16 text-center">
-          <span className="font-display text-xs font-bold tracking-[0.3em] uppercase text-[#C5A059]">
+          <span className="font-display text-xs font-bold tracking-[0.3em] uppercase text-[#B38B38]">
             Guided Style Configurator
           </span>
-          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
             What feels like you?
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-slate-400">
-            Configure your aesthetic aesthetic preferences and technical priorities to curate a personalized Buildstar collection.
+          <p className="mx-auto mt-4 max-w-xl text-base text-slate-600">
+            Configure your aesthetic preferences and technical priorities to curate a personalized Buildstar collection.
           </p>
         </div>
 
         {/* STEP 1: STYLE SELECTION */}
         <div className="mb-16">
-          <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="font-display text-lg font-bold tracking-wider uppercase text-white">
+          <div className="mb-6 flex items-center justify-between border-b border-slate-200 pb-4">
+            <h3 className="font-display text-lg font-bold tracking-wider uppercase text-slate-900">
               01 / Select Your Aesthetic Vibe
             </h3>
-            <span className="text-xs text-[#C5A059] font-medium">Selected: {selectedStyle}</span>
+            <span className="text-xs text-[#B38B38] font-bold">Selected: {selectedStyle}</span>
           </div>
 
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
@@ -72,8 +72,8 @@ export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
                   data-cursor="SELECT"
                   className={`group relative flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl p-4 transition-all duration-300 ${
                     isSelected
-                      ? 'border-2 border-[#C5A059] bg-[#C5A059]/10 shadow-[0_10px_30px_rgba(197,160,89,0.3)]'
-                      : 'border border-white/10 bg-white/5 hover:border-white/30'
+                      ? 'border-2 border-[#B38B38] bg-[#B38B38]/10 shadow-md'
+                      : 'border border-slate-200 bg-white hover:border-slate-300 shadow-sm'
                   }`}
                 >
                   <div className="h-28 w-full overflow-hidden rounded-xl">
@@ -85,14 +85,14 @@ export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
                   </div>
                   <div className="mt-4">
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-base font-bold text-white">{item.name}</span>
+                      <span className="font-display text-base font-bold text-slate-900">{item.name}</span>
                       {isSelected && (
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#C5A059] text-black">
+                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-[#B38B38] text-white">
                           <Check className="h-3 w-3" />
                         </div>
                       )}
                     </div>
-                    <p className="mt-1 text-[11px] leading-tight text-slate-400">{item.desc}</p>
+                    <p className="mt-1 text-[11px] leading-tight text-slate-600">{item.desc}</p>
                   </div>
                 </div>
               );
@@ -102,11 +102,11 @@ export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
 
         {/* STEP 2: PRIORITY SELECTION */}
         <div className="mb-12">
-          <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-            <h3 className="font-display text-lg font-bold tracking-wider uppercase text-white">
+          <div className="mb-6 flex items-center justify-between border-b border-slate-200 pb-4">
+            <h3 className="font-display text-lg font-bold tracking-wider uppercase text-slate-900">
               02 / What is most important to you?
             </h3>
-            <span className="text-xs text-[#C5A059] font-medium">Selected: {selectedPriority}</span>
+            <span className="text-xs text-[#B38B38] font-bold">Selected: {selectedPriority}</span>
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-5">
@@ -119,19 +119,19 @@ export const StyleQuiz: React.FC<StyleQuizProps> = ({ onComplete }) => {
                   data-cursor="SELECT"
                   className={`flex cursor-pointer flex-col justify-between rounded-2xl p-6 transition-all duration-300 ${
                     isSelected
-                      ? 'border border-[#C5A059] bg-[#C5A059]/20 shadow-[0_0_20px_rgba(197,160,89,0.2)]'
-                      : 'border border-white/10 bg-white/5 hover:border-white/20'
+                      ? 'border-2 border-[#B38B38] bg-[#B38B38]/15 shadow-sm'
+                      : 'border border-slate-200 bg-white hover:border-slate-300 shadow-sm'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-display text-base font-bold text-white">{item.name}</span>
+                    <span className="font-display text-base font-bold text-slate-900">{item.name}</span>
                     <div
                       className={`h-4 w-4 rounded-full border ${
-                        isSelected ? 'border-[#C5A059] bg-[#C5A059]' : 'border-slate-500'
+                        isSelected ? 'border-[#B38B38] bg-[#B38B38]' : 'border-slate-300'
                       }`}
                     />
                   </div>
-                  <p className="mt-3 text-xs text-slate-400">{item.note}</p>
+                  <p className="mt-3 text-xs text-slate-600">{item.note}</p>
                 </div>
               );
             })}

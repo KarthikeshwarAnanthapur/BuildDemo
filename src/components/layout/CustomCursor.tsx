@@ -56,8 +56,8 @@ export const CustomCursor: React.FC = () => {
       <motion.div
         className={`flex items-center justify-center rounded-full border transition-colors duration-200 ${
           isHovered
-            ? 'h-16 w-16 border-[#C5A059] bg-[#C5A059]/90 text-black shadow-[0_0_25px_rgba(197,160,89,0.5)]'
-            : 'h-8 w-8 border-white/40 bg-white/10 backdrop-blur-sm'
+            ? 'h-16 w-16 border-[#B38B38] bg-[#B38B38] text-white shadow-[0_10px_25px_rgba(179,139,56,0.4)]'
+            : 'h-8 w-8 border-slate-900/40 bg-slate-900/10 backdrop-blur-sm'
         }`}
         animate={{
           x: position.x - (isHovered ? 32 : 16),
@@ -67,7 +67,7 @@ export const CustomCursor: React.FC = () => {
         transition={{ type: 'spring', damping: 28, stiffness: 350, mass: 0.5 }}
       >
         {isHovered && cursorText && (
-          <span className="font-display text-[10px] font-bold tracking-widest uppercase text-black">
+          <span className="font-display text-[10px] font-bold tracking-widest uppercase text-white">
             {cursorText}
           </span>
         )}
@@ -75,7 +75,7 @@ export const CustomCursor: React.FC = () => {
 
       {/* Tiny Core Dot */}
       <motion.div
-        className="h-1.5 w-1.5 rounded-full bg-[#C5A059]"
+        className="h-1.5 w-1.5 rounded-full bg-[#B38B38]"
         animate={{
           x: position.x - 3,
           y: position.y - 3

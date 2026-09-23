@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, Bookmark, Menu, X, ArrowUpRight, MessageSquare, PhoneCall } from 'lucide-react';
+import { Sparkles, Bookmark, Menu, X, ArrowUpRight, PhoneCall } from 'lucide-react';
 import { MagneticButton } from '../UI/MagneticButton';
 
 interface NavigationProps {
@@ -41,7 +41,7 @@ export const Navigation: React.FC<NavigationProps> = ({
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'border-b border-white/10 bg-[#08090C]/80 py-4 backdrop-blur-xl shadow-2xl'
+          ? 'border-b border-slate-200 bg-white/90 py-4 backdrop-blur-xl shadow-sm'
           : 'bg-transparent py-6'
       }`}
     >
@@ -50,35 +50,35 @@ export const Navigation: React.FC<NavigationProps> = ({
         <a
           href="#"
           data-cursor="HOME"
-          className="group flex items-center gap-3 font-display text-2xl font-black tracking-wider uppercase text-white"
+          className="group flex items-center gap-3 font-display text-2xl font-black tracking-wider uppercase text-slate-900"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#C5A059]/40 bg-[#C5A059]/10 text-[#C5A059] transition-transform duration-300 group-hover:scale-105 group-hover:bg-[#C5A059] group-hover:text-black">
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-[#B38B38]/40 bg-[#B38B38]/10 text-[#B38B38] transition-transform duration-300 group-hover:scale-105 group-hover:bg-[#B38B38] group-hover:text-white">
             <span className="font-display font-extrabold">B</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-xl font-bold tracking-[0.2em] text-white">BUILDSTAR</span>
-            <span className="text-[9px] font-medium tracking-widest text-[#C5A059]">DIGITAL SHOWROOM</span>
+            <span className="text-xl font-bold tracking-[0.2em] text-slate-900">BUILDSTAR</span>
+            <span className="text-[9px] font-semibold tracking-widest text-[#B38B38]">DIGITAL SHOWROOM</span>
           </div>
         </a>
 
         {/* DESKTOP NAV LINKS */}
-        <nav className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md lg:flex">
+        <nav className="hidden items-center gap-1 rounded-full border border-slate-900/10 bg-white/80 px-4 py-1.5 backdrop-blur-md shadow-sm lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               data-cursor="VIEW"
-              className={`relative px-4 py-2 text-xs font-medium uppercase tracking-widest transition-colors duration-300 hover:text-[#C5A059] ${
+              className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors duration-300 hover:text-[#B38B38] ${
                 activeSection === link.href.substring(1)
-                  ? 'text-[#C5A059]'
-                  : 'text-slate-300'
+                  ? 'text-[#B38B38]'
+                  : 'text-slate-700'
               }`}
             >
               {link.name}
               {activeSection === link.href.substring(1) && (
                 <motion.div
                   layoutId="activeIndicator"
-                  className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#C5A059]"
+                  className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#B38B38]"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
@@ -91,7 +91,7 @@ export const Navigation: React.FC<NavigationProps> = ({
           <button
             onClick={onOpenAskAI}
             data-cursor="ASK AI"
-            className="flex items-center gap-2 rounded-full border border-[#C5A059]/30 bg-[#C5A059]/10 px-4 py-2 text-xs font-medium uppercase tracking-wider text-[#C5A059] transition-all duration-300 hover:border-[#C5A059] hover:bg-[#C5A059] hover:text-black"
+            className="flex items-center gap-2 rounded-full border border-[#B38B38]/30 bg-[#B38B38]/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#B38B38] transition-all duration-300 hover:border-[#B38B38] hover:bg-[#B38B38] hover:text-white"
           >
             <Sparkles className="h-3.5 w-3.5" />
             <span>Ask Buildstar</span>
@@ -100,11 +100,11 @@ export const Navigation: React.FC<NavigationProps> = ({
           <a
             href="#material-board"
             data-cursor="MY SPACE"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/5 text-slate-200 transition-all duration-300 hover:border-[#C5A059] hover:text-[#C5A059]"
+            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 transition-all duration-300 hover:border-[#B38B38] hover:text-[#B38B38] shadow-sm"
           >
             <Bookmark className="h-4 w-4" />
             {savedBoardCount > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#C5A059] text-[10px] font-bold text-black">
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#B38B38] text-[10px] font-bold text-white">
                 {savedBoardCount}
               </span>
             )}
@@ -124,7 +124,7 @@ export const Navigation: React.FC<NavigationProps> = ({
         {/* MOBILE MENU TOGGLE */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-900 shadow-sm lg:hidden"
         >
           {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -137,7 +137,7 @@ export const Navigation: React.FC<NavigationProps> = ({
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-x-0 top-[73px] z-40 border-b border-white/10 bg-[#08090C]/95 p-6 backdrop-blur-2xl lg:hidden"
+            className="fixed inset-x-0 top-[73px] z-40 border-b border-slate-200 bg-white/95 p-6 backdrop-blur-2xl shadow-xl lg:hidden"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -145,10 +145,10 @@ export const Navigation: React.FC<NavigationProps> = ({
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-between border-b border-white/10 py-3 font-display text-lg font-bold tracking-wider text-slate-200 hover:text-[#C5A059]"
+                  className="flex items-center justify-between border-b border-slate-100 py-3 font-display text-lg font-bold tracking-wider text-slate-900 hover:text-[#B38B38]"
                 >
                   <span>{link.name}</span>
-                  <ArrowUpRight className="h-4 w-4 text-slate-500" />
+                  <ArrowUpRight className="h-4 w-4 text-slate-400" />
                 </a>
               ))}
               <div className="mt-4 flex flex-col gap-3">
@@ -157,7 +157,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                     setMobileMenuOpen(false);
                     onOpenAskAI();
                   }}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#C5A059]/40 bg-[#C5A059]/10 py-3 text-sm font-semibold text-[#C5A059]"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#B38B38]/40 bg-[#B38B38]/10 py-3 text-sm font-semibold text-[#B38B38]"
                 >
                   <Sparkles className="h-4 w-4" />
                   <span>Ask Buildstar AI Assistant</span>
@@ -167,7 +167,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                     setMobileMenuOpen(false);
                     onOpenConsultation();
                   }}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#C5A059] py-3 text-sm font-bold text-black"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#B38B38] py-3 text-sm font-bold text-white shadow-md"
                 >
                   <PhoneCall className="h-4 w-4" />
                   <span>Request Consultation</span>

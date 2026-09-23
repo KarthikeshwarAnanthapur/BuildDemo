@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ArrowRight, CheckCircle2, Sliders, Eye, RefreshCw } from 'lucide-react';
+import { Sparkles, ArrowRight, CheckCircle2, Eye, RefreshCw } from 'lucide-react';
 import { findAIRecommendations } from '../../data/aiRules';
 import { AIRecommendationResult } from '../../types';
 import { MagneticButton } from '../UI/MagneticButton';
@@ -33,34 +33,34 @@ export const AIMaterialFinder: React.FC<AIMaterialFinderProps> = ({ onVisualizin
   };
 
   return (
-    <section id="ai-finder" className="relative w-full bg-[#0A0B0F] py-28 border-t border-white/10">
+    <section id="ai-finder" className="relative w-full bg-[#F5F4F0] py-28 border-t border-slate-200">
       {/* BACKGROUND AMBIENT ACCENTS */}
-      <div className="pointer-events-none absolute top-1/2 left-1/4 h-96 w-96 -translate-y-1/2 rounded-full bg-[#C5A059]/10 blur-[140px]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/4 h-96 w-96 -translate-y-1/2 rounded-full bg-[#B38B38]/10 blur-[140px]" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* HEADER */}
         <div className="mb-12 text-center">
-          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#C5A059]">
+          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-[#B38B38]/30 bg-[#B38B38]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#B38B38] shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             <span>AI Material Match Engine</span>
           </div>
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
             Describe your vision.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600">
             Type your design intent, room layout, or technical criteria in natural language. Our AI evaluates material parameters and match percentages instantly.
           </p>
         </div>
 
         {/* INPUT BOX */}
         <form onSubmit={handleSearch} className="mx-auto mb-10 max-w-3xl">
-          <div className="relative flex items-center rounded-3xl border border-white/15 bg-white/5 p-2 shadow-2xl backdrop-blur-xl transition-all focus-within:border-[#C5A059] focus-within:shadow-[0_0_30px_rgba(197,160,89,0.25)]">
+          <div className="relative flex items-center rounded-3xl border border-slate-300 bg-white p-2 shadow-xl backdrop-blur-xl transition-all focus-within:border-[#B38B38] focus-within:shadow-[0_0_25px_rgba(179,139,56,0.2)]">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Describe your space (e.g., 'Warm wooden floor for living room...')"
-              className="w-full bg-transparent px-6 py-4 text-base font-medium text-white placeholder-slate-500 outline-none"
+              className="w-full bg-transparent px-6 py-4 text-base font-medium text-slate-900 placeholder-slate-400 outline-none"
             />
             <MagneticButton
               variant="gold"
@@ -94,7 +94,7 @@ export const AIMaterialFinder: React.FC<AIMaterialFinderProps> = ({ onVisualizin
                     setIsSearching(false);
                   }, 500);
                 }}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-slate-300 transition-colors hover:border-[#C5A059] hover:text-[#C5A059]"
+                className="rounded-full border border-slate-300 bg-white px-3 py-1 text-slate-700 shadow-sm transition-colors hover:border-[#B38B38] hover:text-[#B38B38]"
               >
                 "{prompt}"
               </button>
@@ -104,12 +104,12 @@ export const AIMaterialFinder: React.FC<AIMaterialFinderProps> = ({ onVisualizin
 
         {/* RESULTS GRID */}
         <div className="mt-16">
-          <div className="mb-8 flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="mb-8 flex items-center justify-between border-b border-slate-200 pb-4">
             <div className="flex items-center gap-3">
-              <span className="font-display text-sm font-bold tracking-widest uppercase text-[#C5A059]">
+              <span className="font-display text-sm font-bold tracking-widest uppercase text-[#B38B38]">
                 YOUR BUILDSTAR COLLECTION
               </span>
-              <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs text-slate-300">
+              <span className="rounded-full bg-slate-200 px-2.5 py-0.5 text-xs font-semibold text-slate-700">
                 {results.length} Matches Found
               </span>
             </div>
@@ -126,15 +126,15 @@ export const AIMaterialFinder: React.FC<AIMaterialFinderProps> = ({ onVisualizin
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   data-cursor="VIEW"
-                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-[#C5A059]/50 hover:bg-white/10 hover:shadow-2xl"
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 shadow-md transition-all duration-300 hover:border-[#B38B38]/60 hover:shadow-xl"
                 >
                   <div>
                     {/* INDEX & MATCH PERCENTAGE */}
                     <div className="flex items-center justify-between">
-                      <span className="font-display text-2xl font-black text-slate-600">
+                      <span className="font-display text-2xl font-black text-slate-300">
                         0{index + 1}
                       </span>
-                      <div className="flex items-center gap-1.5 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/20 px-3 py-1 text-xs font-bold text-[#E6C875]">
+                      <div className="flex items-center gap-1.5 rounded-full border border-[#B38B38]/30 bg-[#B38B38]/10 px-3 py-1 text-xs font-bold text-[#B38B38]">
                         <CheckCircle2 className="h-3.5 w-3.5" />
                         <span>{item.matchPercentage}% Match</span>
                       </div>
@@ -147,33 +147,33 @@ export const AIMaterialFinder: React.FC<AIMaterialFinderProps> = ({ onVisualizin
                         alt={item.product.name}
                         className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
                       <div className="absolute bottom-3 left-4 right-4">
-                        <span className="rounded-md bg-black/60 px-2.5 py-1 text-[10px] font-semibold tracking-wider uppercase text-[#C5A059] backdrop-blur-md">
+                        <span className="rounded-md bg-white/90 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase text-slate-900 backdrop-blur-md shadow-sm">
                           {item.product.category}
                         </span>
                       </div>
                     </div>
 
                     {/* TITLE & TAGLINE */}
-                    <h3 className="mt-6 font-display text-xl font-bold text-white group-hover:text-[#C5A059]">
+                    <h3 className="mt-6 font-display text-xl font-bold text-slate-900 group-hover:text-[#B38B38]">
                       {item.product.name}
                     </h3>
-                    <p className="mt-1 text-xs font-light text-slate-300 line-clamp-2">
+                    <p className="mt-1 text-xs font-normal text-slate-600 line-clamp-2">
                       {item.product.tagline}
                     </p>
 
                     {/* AI REASONING BOX */}
-                    <div className="mt-4 rounded-xl border border-white/10 bg-black/40 p-4 text-xs leading-relaxed text-slate-300 backdrop-blur-md">
-                      <span className="font-semibold text-[#C5A059]">Why Recommended:</span> {item.reasoning}
+                    <div className="mt-4 rounded-xl border border-amber-200/80 bg-amber-50/70 p-4 text-xs leading-relaxed text-slate-700">
+                      <span className="font-bold text-[#B38B38]">Why Recommended:</span> {item.reasoning}
                     </div>
                   </div>
 
                   {/* BOTTOM ACTION CTA */}
-                  <div className="mt-8 border-t border-white/10 pt-4">
+                  <div className="mt-8 border-t border-slate-100 pt-4">
                     <button
                       onClick={() => onVisualizingProduct(item.product.id)}
-                      className="flex w-full items-center justify-between rounded-xl bg-[#C5A059] px-4 py-3 text-xs font-bold uppercase tracking-wider text-black transition-all duration-300 hover:bg-white"
+                      className="flex w-full items-center justify-between rounded-xl bg-[#B38B38] px-4 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-slate-900 shadow-md"
                     >
                       <div className="flex items-center gap-2">
                         <Eye className="h-4 w-4" />

@@ -25,7 +25,6 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
     const centerX = left + width / 2;
     const centerY = top + height / 2;
 
-    // Gentle magnetic shift (15% distance pull)
     const distanceX = (e.clientX - centerX) * 0.25;
     const distanceY = (e.clientY - centerY) * 0.25;
 
@@ -39,11 +38,11 @@ export const MagneticButton: React.FC<MagneticButtonProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'gold':
-        return 'bg-gradient-to-r from-[#C5A059] to-[#E6C875] text-black font-semibold shadow-[0_10px_30px_rgba(197,160,89,0.3)] hover:shadow-[0_15px_40px_rgba(197,160,89,0.5)]';
+        return 'bg-gradient-to-r from-[#B38B38] to-[#D4A747] text-white font-semibold shadow-[0_10px_25px_rgba(179,139,56,0.3)] hover:shadow-[0_15px_35px_rgba(179,139,56,0.5)]';
       case 'glass':
-        return 'glass-panel text-white hover:border-[#C5A059]/50 hover:bg-white/10';
+        return 'border border-slate-900/10 bg-white/90 text-slate-900 hover:border-[#B38B38] hover:bg-white shadow-sm';
       case 'outline':
-        return 'border border-white/20 bg-transparent text-white hover:border-[#C5A059] hover:text-[#C5A059]';
+        return 'border border-slate-900/20 bg-transparent text-slate-900 hover:border-[#B38B38] hover:text-[#B38B38]';
       default:
         return '';
     }

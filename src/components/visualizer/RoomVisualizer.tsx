@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { BeforeAfterSlider } from '../UI/BeforeAfterSlider';
 import { BUILDSTAR_PRODUCTS } from '../../data/products';
 import { Product } from '../../types';
-import { Sparkles, Upload, Bookmark, PhoneCall, RefreshCw, Check } from 'lucide-react';
+import { Sparkles, Upload, Bookmark, PhoneCall, Check } from 'lucide-react';
 import { MagneticButton } from '../UI/MagneticButton';
 import canvasConfetti from 'canvas-confetti';
 
@@ -83,18 +82,18 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
   };
 
   return (
-    <section id="visualizer" className="relative w-full bg-[#08090C] py-28 border-t border-white/10">
+    <section id="visualizer" className="relative w-full bg-[#FAF9F6] py-28 border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* HEADER */}
         <div className="mb-12 text-center">
-          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-[#C5A059]">
+          <div className="mx-auto mb-3 inline-flex items-center gap-2 rounded-full border border-[#B38B38]/30 bg-[#B38B38]/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-[#B38B38] shadow-sm">
             <Sparkles className="h-3.5 w-3.5" />
             <span>Interactive Spatial Transformation Engine</span>
           </div>
-          <h2 className="font-display text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+          <h2 className="font-display text-4xl font-extrabold tracking-tight text-slate-900 md:text-6xl">
             See it in your space.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-600">
             Switch between real Buildstar hardwood, decking, and SPC materials to preview instant visual transformations with our interactive before/after drag slider.
           </p>
         </div>
@@ -104,8 +103,8 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
           {/* LEFT: ROOM PRESET SELECTOR & MATERIAL OPTIONS */}
           <div className="flex flex-col gap-8 lg:col-span-4">
             {/* ROOM PRESETS */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-              <h3 className="font-display text-xs font-bold tracking-widest uppercase text-[#C5A059]">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md">
+              <h3 className="font-display text-xs font-bold tracking-widest uppercase text-[#B38B38]">
                 01 / Choose Room Preset
               </h3>
               <div className="mt-4 flex flex-col gap-2">
@@ -118,19 +117,19 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
                     }}
                     className={`flex items-center justify-between rounded-xl px-4 py-3 text-xs font-medium transition-all ${
                       selectedRoomIndex === idx && !customRoomImage
-                        ? 'border border-[#C5A059] bg-[#C5A059]/20 text-white font-bold'
-                        : 'border border-white/5 bg-white/5 text-slate-300 hover:bg-white/10'
+                        ? 'border-2 border-[#B38B38] bg-[#B38B38]/15 text-slate-900 font-bold'
+                        : 'border border-slate-100 bg-slate-50 text-slate-700 hover:bg-slate-100'
                     }`}
                   >
                     <span>{room.name}</span>
                     {selectedRoomIndex === idx && !customRoomImage && (
-                      <div className="h-2 w-2 rounded-full bg-[#C5A059]" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-[#B38B38]" />
                     )}
                   </button>
                 ))}
 
                 {/* CUSTOM PHOTO UPLOAD OPTION */}
-                <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-[#C5A059]/50 bg-[#C5A059]/10 p-3 text-xs font-semibold text-[#C5A059] transition-all hover:bg-[#C5A059]/20">
+                <label className="mt-2 flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-[#B38B38]/50 bg-[#B38B38]/10 p-3 text-xs font-semibold text-[#B38B38] transition-all hover:bg-[#B38B38]/20">
                   <Upload className="h-4 w-4" />
                   <span>Upload Your Own Room Photo</span>
                   <input type="file" accept="image/*" onChange={handleFileUpload} className="hidden" />
@@ -139,8 +138,8 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
             </div>
 
             {/* MATERIAL SWITCHER */}
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-md">
-              <h3 className="font-display text-xs font-bold tracking-widest uppercase text-[#C5A059]">
+            <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-md">
+              <h3 className="font-display text-xs font-bold tracking-widest uppercase text-[#B38B38]">
                 02 / Select Buildstar Material
               </h3>
               <div className="mt-4 flex flex-col gap-3">
@@ -153,8 +152,8 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
                       data-cursor="SWITCH"
                       className={`flex cursor-pointer items-center gap-4 rounded-2xl p-3 transition-all ${
                         isSelected
-                          ? 'border border-[#C5A059] bg-[#C5A059]/20 shadow-[0_0_15px_rgba(197,160,89,0.2)]'
-                          : 'border border-white/5 bg-white/5 hover:border-white/20'
+                          ? 'border-2 border-[#B38B38] bg-[#B38B38]/15 shadow-sm'
+                          : 'border border-slate-100 bg-slate-50 hover:border-slate-300'
                       }`}
                     >
                       <img
@@ -163,11 +162,11 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
                         className="h-12 w-12 rounded-xl object-cover"
                       />
                       <div className="flex flex-1 flex-col">
-                        <span className="font-display text-sm font-bold text-white">{prod.name}</span>
-                        <span className="text-[11px] text-[#C5A059]">{prod.category}</span>
+                        <span className="font-display text-sm font-bold text-slate-900">{prod.name}</span>
+                        <span className="text-[11px] font-semibold text-[#B38B38]">{prod.category}</span>
                       </div>
                       {isSelected && (
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#C5A059] text-black">
+                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#B38B38] text-white">
                           <Check className="h-3.5 w-3.5" />
                         </div>
                       )}
@@ -187,19 +186,19 @@ export const RoomVisualizer: React.FC<RoomVisualizerProps> = ({
             />
 
             {/* PRODUCT QUICK DETAILS & ACTIONS BAR */}
-            <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl sm:flex-row">
+            <div className="flex flex-col items-center justify-between gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-md sm:flex-row">
               <div className="flex flex-col">
-                <span className="text-xs uppercase tracking-widest text-slate-400">Active Visualization</span>
-                <span className="font-display text-lg font-bold text-white">{selectedProduct.name}</span>
-                <span className="text-xs text-[#C5A059]">{selectedProduct.finish} • {selectedProduct.acRating}</span>
+                <span className="text-xs uppercase tracking-widest text-slate-500 font-medium">Active Visualization</span>
+                <span className="font-display text-lg font-bold text-slate-900">{selectedProduct.name}</span>
+                <span className="text-xs font-medium text-[#B38B38]">{selectedProduct.finish} • {selectedProduct.acRating}</span>
               </div>
 
               <div className="flex items-center gap-3">
                 <button
                   onClick={handleSave}
-                  className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-3 text-xs font-semibold text-white transition-all hover:border-[#C5A059] hover:text-[#C5A059]"
+                  className="flex items-center gap-2 rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-xs font-bold text-slate-700 transition-all hover:border-[#B38B38] hover:text-[#B38B38]"
                 >
-                  {isSaved ? <Check className="h-4 w-4 text-green-400" /> : <Bookmark className="h-4 w-4" />}
+                  {isSaved ? <Check className="h-4 w-4 text-emerald-600" /> : <Bookmark className="h-4 w-4" />}
                   <span>{isSaved ? 'Saved to Space' : 'Save to My Space'}</span>
                 </button>
 
