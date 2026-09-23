@@ -1,0 +1,162 @@
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { BUILDSTAR_PRODUCTS } from '../../data/products';
+import { Product, MaterialCategory } from '../../types';
+import { ProductDetailModal } from './ProductDetailModal';
+import { Sparkles, ArrowRight, Eye, Layers, CheckCircle2 } from 'lucide-react';
+
+interface ProductShowcaseProps {
+  onVisualizeProduct: (productId: string) => void;
+  onConsult: () => void;
+}
+
+export const ProductShowcase: React.FC<ProductShowcaseProps> = ({
+  onVisualizeProduct,
+  onConsult
+}) => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [activeModalProduct, setActiveModalProduct] = useState<Product | null>(null);
+
+  const categories = [
+    'All',
+    'Engineered Wood',
+    'Outdoor Decking',
+    'PVC/SPC',
+    'WPC Cladding',
+    'Tata Steel Fire Doors',
+    'Sports Infrastructure'
+  ];
+
+  const filteredProducts =
+    selectedCategory === 'All'
+      ? BUILDSTAR_PRODUCTS
+      : BUILDSTAR_PRODUCTS.filter((p) => p.category === selectedCategory);
+
+  return (
+    <section id="products" className="relative w-full bg-[#08090C] py-28 border-t border-white/10">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        {/* HEADER */}
+        <div className="mb-12 text-center">
+          <span className="font-display text-xs font-bold tracking-[0.3em] uppercase text-[#C5A059]">
+            Architectural Material Collection
+          </span>
+          <h2 className="mt-3 font-display text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+            Crafted for endurance & elegance.
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-slate-400">
+            Explore verified Buildstar materials engineered to survive India's climate variations while exuding Apple-level product craftsmanship.
+          </p>
+        </div>
+
+        {/* CATEGORY FILTER STRIP */}
+        <div className="mb-16 flex flex-wrap items-center justify-center gap-2">
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                data-cursor="FILTER"
+                className={`rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300 ${
+                  isActive
+                    ? 'border border-[#C5A059] bg-[#C5A059] text-black shadow-[0_0_20px_rgba(197,160,89,0.4)]'
+                    : 'border border-white/10 bg-white/5 text-slate-300 hover:border-white/30 hover:text-white'
+                }`}
+              >
+                {cat}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* EDITORIAL MATERIAL CARDS GRID */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4 }}
+                data-cursor="VIEW"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-500 hover:border-[#C5A059]/50 hover:bg-white/10 hover:shadow-2xl"
+              >
+                <div>
+                  {/* IMAGE CONTAINER WITH PARALLAX SCALING */}
+                  <div className="relative h-64 w-full overflow-hidden rounded-2xl">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    
+                    <div className="absolute top-4 left-4 flex gap-2">
+                      <span className="rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#C5A059] backdrop-blur-md">
+                        {product.category}
+                      </span>
+                    </div>
+
+                    {product.ecoScore && (
+                      <div className="absolute bottom-3 right-3 rounded-full bg-emerald-500/20 px-2.5 py-1 text-[10px] font-bold text-emerald-300 backdrop-blur-md">
+                        Eco Score {product.ecoScore}/100
+                      </div>
+                    )}
+                  </div>
+
+                  {/* TITLE & TAGLINE */}
+                  <h3 className="mt-6 font-display text-2xl font-bold text-white transition-colors duration-300 group-hover:text-[#C5A059]">
+                    {product.name}
+                  </h3>
+                  <p className="mt-2 text-xs font-light text-slate-300 line-clamp-2">
+                    {product.tagline}
+                  </p>
+
+                  {/* KEY SPECS SUMMARY */}
+                  <div className="mt-6 flex flex-wrap gap-2 text-[11px] text-slate-400">
+                    <span className="rounded-lg border border-white/10 bg-black/30 px-2.5 py-1">
+                      Finish: {product.finish}
+                    </span>
+                    {product.acRating && (
+                      <span className="rounded-lg border border-white/10 bg-black/30 px-2.5 py-1">
+                        {product.acRating}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* BOTTOM BUTTONS */}
+                <div className="mt-8 flex items-center justify-between border-t border-white/10 pt-4">
+                  <button
+                    onClick={() => setActiveModalProduct(product)}
+                    className="text-xs font-semibold uppercase tracking-wider text-slate-300 hover:text-white"
+                  >
+                    Specs & Details
+                  </button>
+
+                  <button
+                    onClick={() => onVisualizeProduct(product.id)}
+                    className="flex items-center gap-2 rounded-full border border-[#C5A059]/40 bg-[#C5A059]/10 px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#C5A059] transition-all duration-300 hover:bg-[#C5A059] hover:text-black"
+                  >
+                    <Eye className="h-3.5 w-3.5" />
+                    <span>Visualize</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+
+      {/* DETAIL MODAL */}
+      <ProductDetailModal
+        product={activeModalProduct}
+        onClose={() => setActiveModalProduct(null)}
+        onVisualize={onVisualizeProduct}
+        onConsult={onConsult}
+      />
+    </section>
+  );
+};
